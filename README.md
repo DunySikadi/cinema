@@ -1,4 +1,3 @@
-```markdown
 # Projet Cinema - Gestion de films, auteurs et spectateurs
 
 Application Django pour gérer des films, auteurs et spectateurs avec une interface d'administration et une API REST.
@@ -123,4 +122,3 @@ Application Django pour gérer des films, auteurs et spectateurs avec une interf
 
 ### Auteurs
 Les utilisateurs sont automatiquement filtrés pour ne montrer que ceux ayant le rôle "Auteur".
-```
