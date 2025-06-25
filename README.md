@@ -11,7 +11,7 @@ Application Django pour gérer des films, auteurs et spectateurs avec une interf
 ## Installation
 
 1. Clonez le dépôt :
-    git clone https://github.com/votre-utilisateur/cinema.git
+    git clone https://github.com/DunySikadi/cinema.git
     cd cinema
 
 2. Créez un fichier `.env` :
