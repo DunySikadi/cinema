@@ -1,0 +1,41 @@
+# Fichiers Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Dossiers spécifiques à Django
+/films/migrations/
+/users/migrations/
+
+# Environnements virtuels
+venv/
+.env/
+.venv/
+
+# Base de données
+*.sqlite3
+*.db
+
+# Fichiers Django
+*.log
+local_settings.py
+
+# Fichiers de sauvegarde
+*.bak
+
+# IDE
+.idea/
+.vscode/
+
+# Fichiers statiques
+staticfiles/
+
+# Fichiers média
+media/
+
+# Environnement
+.env
+.env.local
+
+# Docker
+docker-compose.override.yml
