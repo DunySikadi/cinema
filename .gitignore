@@ -8,7 +8,7 @@ __pycache__/
 /users/migrations/
 
 # Environnements virtuels
-venv/
+myenv/
 .env/
 .venv/
 

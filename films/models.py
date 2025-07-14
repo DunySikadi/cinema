@@ -27,6 +27,6 @@ class Film(models.Model):
         return self.title
     
     def average_rating(self):
-        result = self.ratings.aggregate(average=Avg('value'))  # type: ignore 
+        result = self.ratings.aggregate(average=Avg('value'))  # type: ignore
         avg = result.get('average')
         return round(avg, 1) if avg is not None else None

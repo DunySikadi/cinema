@@ -1,12 +1,12 @@
-from rest_framework import generics, permissions # type: ignore
-from django_filters.rest_framework import DjangoFilterBackend # type: ignore
+from rest_framework import generics, permissions 
+from django_filters.rest_framework import DjangoFilterBackend 
 from .models import Film
 from .serializers import FilmSerializer, FilmCreateSerializer
 
 class FilmListView(generics.ListCreateAPIView):
     queryset = Film.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend]  # type: ignore
     filterset_fields = ['status', 'is_from_tmdb']
     
     def get_serializer_class(self):

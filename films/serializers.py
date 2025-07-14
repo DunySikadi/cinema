@@ -1,4 +1,4 @@
-from rest_framework import serializers # type: ignore
+from rest_framework import serializers
 from users.serializers import UserSerializer
 from .models import Film
 from users.serializers import FilmRatingSerializer
@@ -7,7 +7,7 @@ class FilmSerializer(serializers.ModelSerializer):
     authors = UserSerializer(many=True, read_only=True)
     ratings = FilmRatingSerializer(many=True, read_only=True)
     
-    class Meta:
+    class Meta: # type: ignore
         model = Film
         fields = [
             'id', 'title', 'description', 'release_date','status', 'authors', 'ratings',
@@ -15,7 +15,7 @@ class FilmSerializer(serializers.ModelSerializer):
         ]
 
 class FilmCreateSerializer(serializers.ModelSerializer):
-    class Meta:
+    class Meta: # type: ignore
         model = Film
         fields = [
             'id', 'title', 'description', 'release_date','status', 'authors', 'tmdb_id', 'is_from_tmdb'

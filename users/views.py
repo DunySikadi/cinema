@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import generics, permissions, status # type: ignore
-from rest_framework.response import Response # type: ignore
-from rest_framework_simplejwt.views import TokenObtainPairView # type: ignore
+from rest_framework import generics, permissions, status 
+from rest_framework.response import Response 
+from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import User, Favorite, AuthorRating,FilmRating
 from .permissions import IsViewerPermission
 from .serializers import (
@@ -9,8 +9,9 @@ from .serializers import (
     CustomTokenObtainPairSerializer, AuthorRatingSerializer, FilmRatingSerializer, FavoriteSerializer
 )
 from films.models import Film
-from rest_framework_simplejwt.tokens import RefreshToken # type: ignore
-from rest_framework.views import APIView # type: ignore
+from rest_framework_simplejwt.tokens import RefreshToken 
+from rest_framework.views import APIView
+from rest_framework import serializers
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -106,13 +107,13 @@ class FavoriteListView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Favorite.objects.filter(viewer=self.request.user)
     
-    def perform_create(self, serializer):
+    def perform_create(self, serializer) -> None:
         film_id = self.request.data.get('film')
         try:
             film = Film.objects.get(pk=film_id)
             serializer.save(viewer=self.request.user, film=film)
         except Film.DoesNotExist:
-            raise serializers.ValidationError({"film": "Film introuvable."}) # type: ignore
+            raise serializers.ValidationError({"film": "Film introuvable."})
 
 class FavoriteDetailView(generics.DestroyAPIView):
     queryset = Favorite.objects.all()

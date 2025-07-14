@@ -1,12 +1,12 @@
-from rest_framework import serializers # type: ignore
+from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer # type: ignore
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import User, Favorite, FilmRating, AuthorRating
 
 class FilmRatingSerializer(serializers.ModelSerializer):
     viewer = serializers.StringRelatedField(read_only=True)
     
-    class Meta:
+    class Meta: # type: ignore
         model = FilmRating
         fields = ['id', 'viewer', 'film', 'value', 'created_at']
         
@@ -14,7 +14,7 @@ class FavoriteSerializer(serializers.ModelSerializer):
     viewer = serializers.StringRelatedField(read_only=True)
     film = serializers.StringRelatedField(read_only=True)
     
-    class Meta:
+    class Meta: # type: ignore
         model = Favorite
         fields = ['id', 'viewer', 'film', 'created_at']
 
@@ -22,7 +22,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
 
-    class Meta:
+    class Meta: # type: ignore
         model = User
         fields = ['username', 'email', 'password', 'password2', 'birth_date','role']
 
@@ -45,7 +45,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 class AuthorRatingSerializer(serializers.ModelSerializer):
     viewer = serializers.StringRelatedField(read_only=True)
     
-    class Meta:
+    class Meta: # type: ignore
         model = AuthorRating
         fields = ['id', 'viewer', 'author', 'value', 'created_at']
        
@@ -58,7 +58,7 @@ class UserSerializer(serializers.ModelSerializer):
     """
     ratings = AuthorRatingSerializer(many=True, read_only=True)
     
-    class Meta:
+    class Meta: # type: ignore
         model = User
         fields = ['id', 'username', 'email', 'birth_date', 'bio', 'avatar','ratings']
         extra_kwargs = {
@@ -95,6 +95,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         user = self.user
 
         # On ajoute les champs personnalisés dans la réponse JSON
-        data['role'] = user.role
+        data['role'] = user.role # type: ignore
         
         return data

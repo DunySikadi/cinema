@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from datetime import timedelta
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -52,10 +54,12 @@ INSTALLED_APPS = [
 ]
 
 SIMPLE_JWT = {
-    # Permet la rotation des refresh tokens (génère un nouveau à chaque rafraîchissement)
-    'ROTATE_REFRESH_TOKENS': True,
-    # Blackliste automatiquement les anciens refresh tokens après rotation
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,    
     'BLACKLIST_AFTER_ROTATION': True,
+    'SIGNING_KEY': SECRET_KEY,
+    'ALGORITHM': 'HS256',
 }
 
 MIDDLEWARE = [
